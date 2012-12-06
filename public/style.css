@@ -1,0 +1,217 @@
+  body{
+    font-family: Verdana;
+  }
+
+ /*INICIO********************CSS MAPS COMUNIDADES FREIRIANAS********************INICIO*/
+
+  #map_canvas{
+    position: relative;
+    float: left;
+    width: 750px;
+    height: 589px;
+    border-right:1px solid #75889d;
+  }
+
+
+  #right{
+    position: relative;
+    float: left;
+    width: 220px;
+    height: 423px;
+    margin: 1px 0px;
+  }
+
+  .h1{
+    position: relative;
+    float:left;
+    display: block;
+    padding: 12px 10px 0px 0px;
+    margin: -1px 0px 0px 0px;
+    width: 395px;
+    height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #right h1{
+    position: relative;
+    display: block;
+    background: #0067aa;
+    padding: 12px 0px 12px 15px;
+    margin: -8px 0px 0px 0px;
+    width: 204px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #0067aa;
+    border-left:1px solid #188edb;
+  }
+
+  form#filtrosMap{
+    font-size: 11px;
+    position:relative;
+    top:8px;
+    float:right;
+    margin-right:5px;
+  }
+
+  form#filtrosMap fieldset{
+    position: relative;
+    border: none;
+    background: #efefef;
+    height: 194px;
+    width: auto;
+    padding: 4px 12px 12px 12px;
+    margin: 0;
+  }
+
+  form#filtrosMap select{
+    min-width: 100px;
+    font-size: 12px;
+    position: relative;
+    color: #333;
+  }  
+
+  form#filtrosMap  #submit{
+    position: relative;
+    border: 1px solid #19326a;
+    background: #0067aa;
+    color: #fff;
+    padding: 3px;
+    margin-top: 0px;
+    color: #fff;
+    padding:1px 10px;
+  }
+
+  #info{
+    width: 100%;
+    height: 580px;
+    padding: 6px 0px 0px 0px;
+    background: #e8e8e8;
+    border: 1px solid #ccc;
+    border-left:1px solid #fff;
+  }
+
+  #right h3{
+    position: relative;
+    height: 20px; 
+    font-weight: bold;
+    color: #52403f;
+    font-size: 13px;
+    float: left;
+    padding: 8px 0px 0px 0px;
+    margin: 0px 0px 0px 14px;
+    border-top:1px solid  #fff;
+    width:196px;
+  }
+
+  .innerInfo{
+    font-size: 11px;
+    float: left;
+    width: 90%;
+    margin: 0px 0px 0px 14px;
+    padding: 0px 0px 10px 0px;
+    position: relative;
+    display: block;
+    border-bottom:1px solid  #ccc;
+    line-height:17px ;
+  }
+
+ /*FIM********************CSS MAPS COMUNIDADES FREIRIANAS********************FIM*/
+
+
+.mamodalBackground{
+  display:none;
+  width:100%;
+  height:100%;
+  background:#333;
+  position:fixed;
+  opacity:0.85;
+  left:0px;
+  top:0px;
+}
+
+.mamodalModal{
+  display:none;
+  overflow:auto;
+  width:600px;
+  max-height:400px;
+  background:#eee;
+  position:fixed;
+  top:50%;
+  margin-top:-200px;
+  left:50%;
+  margin-left:-300px;
+  padding:10px 0px 10px 10px;
+  border:1px solid #fff;  
+  -webkit-box-shadow: 0px 0px 40px 0px #000; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  box-shadow: 0px 0px 40px 0px #000; /* Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5 */
+  border-radius:3px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#ffffff)); /* Safari 4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, #eeeeee, #ffffff); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, #eeeeee, #ffffff); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #eeeeee, #ffffff); /* Firefox 16+, IE10, Opera 12.50+ */
+} 
+
+.mamodalModal p{
+  font-size:13px;
+  line-height:24px;
+  width:540px;
+}
+
+.mamodalModalClose{
+  position:fixed;
+  font-family:"Verdana",sans-serif;
+  color:#fff;
+  float:right;
+  text-decoration:none;
+  font-size:13px;
+  margin:-25px 0px 0px -25px;
+  padding:3px 7px 4px 6px;
+  background:#888;
+  border-radius:15px;
+  display:block;
+  width:13px;
+  height:17px;
+  text-align:center;
+  border:1px solid #333;
+   -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.mamodalModalClose:hover{
+  background:#444;
+}
+
+.maisInfo{
+  position:relative;
+  left:-195px;
+  top:-28px;
+  font-family:"Arial",sans-serif;
+  color:#fff;
+  float:right;
+  text-decoration:none;
+  font-size:15px;
+  padding:0px 5px 2px 4px;
+  background:#888;
+  border-radius:10px;
+  display:block;
+  width:10px;
+  height:15px;
+  text-align:center;
+  border:1px solid #77;
+   -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+
+.maisInfo:hover{
+  background:#444;
+}
+
+.maisInfo span{
+  color:#444;
+  position:absolute;
+  top:0px;
+  left:23px;
+}7
