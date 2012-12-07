@@ -19,59 +19,56 @@ jQuery(document).ready(function() {
         map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         var marker = new Array;
         ipfCount = json.ipf.length
-        for( i=0; i<ipfCount; i++){
 
-        var location = new google.maps.LatLng(json.ipf[i].latitude, json.ipf[i].longitude);
-        markerInit = marker[1]  
-        marker[i] = new google.maps.Marker({
+        for( i=0; i<ipfCount; i++){
+          var location = new google.maps.LatLng(json.ipf[i].latitude, json.ipf[i].longitude);
+          markerInit = marker[1]  
+          marker[i] = new google.maps.Marker({
             position: location, 
             map: map,
         });
      
-              
-
         latitude = json.ipf[i].latitude;
         longitude = json.ipf[i].longitude;
 
-
-            var addListener = function (i) {
-              google.maps.event.addListener(marker[i], 'click', function(){
-                jQuery('#preInfo').fadeOut(200); 
-                setTimeout(showInfo(json.ipf[i]), 200)      
-              });
-            }
-            addListener(i)
-      }
-
-
-        setTimeout(showInfo(json.ipf[0]), 200) 
-
-        categoriaCount = json.categorias.length
-        for( i=0; i<categoriaCount; i++){
-
-          listagemCategorias = json.categorias[i].categorias;
-          selectCategoria = jQuery('#categorias') 
-          selectCategoria.append("<option id='local"+i+"' value='"+listagemCategorias+"'>"+listagemCategorias+"</option>");
+        var addListener = function (i) {
+          google.maps.event.addListener(marker[i], 'click', function(){
+            jQuery('#preInfo').fadeOut(200); 
+            setTimeout(showInfo(json.ipf[i]), 200)      
+          });
         }
-
-        paisCount = json.pais.length
-        for( i=0; i<paisCount; i++){
-
-          listagemPaises = json.pais[i].pais;
-          selectPais =jQuery('#pais');
-          selectPais.append("<option class='"+listagemPaises+"' value='"+latitude+","+longitude+"'>"+listagemPaises+"</option>");
-        }
+        addListener(i)
       }
-    });
 
-    function getInfo(info, title){  
-      if(info){
-        return "<h3>"+ title + "</h3>" + "<p class='innerInfo'>"+ info +"</p>"
+
+      setTimeout(showInfo(json.ipf[0]), 200) 
+
+      categoriaCount = json.categorias.length
+      for( i=0; i<categoriaCount; i++){
+
+        listagemCategorias = json.categorias[i].categoria;
+        selectCategoria = jQuery('#categorias') 
+        selectCategoria.append("<option id='local"+i+"' value='"+listagemCategorias+"'>"+listagemCategorias+"</option>");
       }
-      else{
-        return ""
+
+      paisCount = json.pais.length
+      for( i=0; i<paisCount; i++){
+
+        listagemPaises = json.pais[i].pais;
+        selectPais =jQuery('#pais');
+        selectPais.append("<option class='"+listagemPaises+"' value='"+latitude+","+longitude+"'>"+listagemPaises+"</option>");
       }
     }
+  });
+
+  function getInfo(info, title){  
+    if(info){
+      return "<h3>"+ title + "</h3>" + "<p class='innerInfo'>"+ info +"</p>"
+    }
+    else{
+      return ""
+    }
+  }
 
     function showInfo(arrayPointer){  
       close = "<a class='mamodalModalClose' href='#''>X</a>"
@@ -112,7 +109,7 @@ jQuery(document).ready(function() {
 
     }     
 
-    function filtragem(){
+    function filter(){
       selectCategorias =jQuery('#categorias').val();
       selectPais = jQuery('#pais').val()
       selectPaisSend = jQuery("#pais").find("option:selected").attr("class")
@@ -132,7 +129,7 @@ jQuery(document).ready(function() {
           var lng = parseFloat(latlngStr[1]);
           var newCenter = new google.maps.LatLng(lat, lng);
           map.setCenter(newCenter);
-          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias, 4)
+          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 4)
           return false
         } else if (selectPaisSend != "all" && selectCategorias != "all"){
           var latlngStr = selectPais.split(',', 2);
@@ -140,14 +137,14 @@ jQuery(document).ready(function() {
           var lng = parseFloat(latlngStr[1]);
           var newCenter = new google.maps.LatLng(lat, lng);
           map.setCenter(newCenter);
-          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias, 4)
+          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 4)
         } else if (selectPaisSend == "all" && selectCategorias != "all"){
           var latlngStr = selectPais.split(',', 2);
           var lat = parseFloat(latlngStr[0]);
           var lng = parseFloat(latlngStr[1]);
           var newCenter = new google.maps.LatLng(20.689060, 20.044636);
           map.setCenter(newCenter);
-          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias, 2)
+          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 2)
           return false
         } else if (selectPaisSend == "all" && selectCategorias == "all"){
           var latlngStr = selectPais.split(',', 2);
@@ -155,7 +152,7 @@ jQuery(document).ready(function() {
           var lng = parseFloat(latlngStr[1]);
           var newCenter = new google.maps.LatLng(20.689060, 20.044636);
           map.setCenter(newCenter);
-          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias, 2)
+          showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 2)
         }
         return false
       })
@@ -163,6 +160,7 @@ jQuery(document).ready(function() {
     }
 
     function showResults(request, zoom){
+      console.log(request);
       jQuery.ajax({
         url: request,
         dataType: 'jsonp',
@@ -205,10 +203,8 @@ jQuery(document).ready(function() {
         }
       });
     }
-    filtragem()
+    filter()
   }
+
   initializeMap();
-
-
-
 });

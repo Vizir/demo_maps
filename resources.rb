@@ -36,6 +36,7 @@ configure do
         :telefone, :responsavel, :fundacao, :latitude, 
         :longitude, :descricao, :site, :emails]
       result = []
+      
       self.all(:fields => attributes_to_json, :conditions => conditions).each do |resource|
         result << resource.attributes
       end
@@ -50,7 +51,7 @@ configure do
     categories = ['ONG', 'Centro de Pesquisa']
     ["Brasil", "EUA"].each do |country|
       5.times do |i|
-        if i.even?
+        if country == "Brasil"
           state = BRAZIL_STATES[i]
         else
           state = Faker::Address.state
@@ -83,10 +84,6 @@ configure do
   end
 end
 
-get '/' do
-  "Hello world"
-end
-
 get '/resources.json' do
   content_type :json
 
@@ -98,7 +95,8 @@ end
 
 get '/resources/:country/:category.json' do
   content_type :json
-
-  resources = Resource.to_json({:categoria => params["category"], :pais => params["country"]})
+  categoria_condition = (params["category"] == "all")? {} : {:categoria => params["category"]}
+  country_condition = (params["country"] == "all")? {} : {:pais => params["country"]}
+  resources = Resource.to_json(categoria_condition.merge(country_condition))
   "JSONP(#{{:ipf => resources}.to_json})"
 end
