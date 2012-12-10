@@ -94,7 +94,7 @@ jQuery(document).ready(function() {
   }
 
   function initializeMap() {
-    call(populateMap, 'http://intranet.paulofreire.org/comunidade_freiriana/initialize_data.json');
+    call(populateMap, 'http://localhost:9393/resources.json');
   }
     
 
@@ -157,13 +157,14 @@ jQuery(document).ready(function() {
     if(selectPais == ""  && selectCategorias == ""){
       return false
     }
+
     if(selectPaisSend != "all" && selectCategorias == "all"){
       var latlngStr = selectPais.split(',', 2);
       var lat = parseFloat(latlngStr[0]);
       var lng = parseFloat(latlngStr[1]);
       var newCenter = new google.maps.LatLng(lat, lng);
       map.setCenter(newCenter);
-      showResults("http://intranet.paulofreire.org/comunidade_freiriana/get_institutions_data/"+selectPaisSend+"/"+selectCategorias+".json", 4)
+      showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 4)
       return false
     } else if (selectPaisSend != "all" && selectCategorias != "all"){
       var latlngStr = selectPais.split(',', 2);
@@ -171,14 +172,14 @@ jQuery(document).ready(function() {
       var lng = parseFloat(latlngStr[1]);
       var newCenter = new google.maps.LatLng(lat, lng);
       map.setCenter(newCenter);
-      showResults("http://intranet.paulofreire.org/comunidade_freiriana/get_institutions_data/"+selectPaisSend+"/"+selectCategorias+".json", 4)
+      showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 4)
     } else if (selectPaisSend == "all" && selectCategorias != "all"){
       var latlngStr = selectPais.split(',', 2);
       var lat = parseFloat(latlngStr[0]);
       var lng = parseFloat(latlngStr[1]);
       var newCenter = new google.maps.LatLng(20.689060, 20.044636);
       map.setCenter(newCenter);
-      showResults("http://intranet.paulofreire.org/comunidade_freiriana/get_institutions_data/"+selectPaisSend+"/"+selectCategorias+".json", 2)
+      showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 2)
       return false
     } else if (selectPaisSend == "all" && selectCategorias == "all"){
       var latlngStr = selectPais.split(',', 2);
@@ -186,7 +187,7 @@ jQuery(document).ready(function() {
       var lng = parseFloat(latlngStr[1]);
       var newCenter = new google.maps.LatLng(20.689060, 20.044636);
       map.setCenter(newCenter);
-      showResults("http://intranet.paulofreire.org/comunidade_freiriana/get_institutions_data/"+selectPaisSend+"/"+selectCategorias+".json", 2)
+      showResults("http://localhost:9393/resources/"+selectPaisSend+"/"+selectCategorias+".json", 2)
     }
     return false
   }
